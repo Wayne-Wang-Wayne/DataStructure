@@ -21,8 +21,9 @@ public class MyArrayList {
     }
 
     public void display() {
+        System.out.print("Your List: ");
         for (int i = 0; i < size; i++) {
-            System.out.println(String.valueOf(list[i]));
+            System.out.print(String.valueOf(list[i]) + "  ");
         }
     }
 
@@ -31,6 +32,30 @@ public class MyArrayList {
             recreateList();
         list[size] = val;
         size++;
+    }
+
+    public void insert(int index, int val) {
+        if (index > size)
+            return;
+        if (size >= capacity)
+            recreateList();
+        int i;
+        for (i = size; i > index; i--) {
+            list[i] = list[i - 1];
+        }
+        list[i] = val;
+        size++;
+    }
+
+    public void delete(int index) {
+        if (index >= size)
+            return;
+        list[index] = -1;
+        for (int i = index; i < size; i++) {
+            if (i + 1 <= size - 1)
+                list[i] = list[i + 1];
+        }
+        size--;
     }
 
     private void recreateList() {

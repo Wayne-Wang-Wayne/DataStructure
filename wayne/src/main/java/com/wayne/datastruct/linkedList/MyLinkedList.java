@@ -55,6 +55,57 @@ public class MyLinkedList {
         return rSumHelper(head);
     }
 
+    public Node<Integer> search(int value) {
+        Node<Integer> temp = head;
+        Node<Integer> last = null;
+        while (temp != null) {
+            if (temp.value == value) {
+                // if found move to first
+                if (temp != head) {
+                    last.next = temp.next;
+                    temp.next = head;
+                    head = temp;
+                }
+                return head;
+            }
+            last = temp;
+            temp = temp.next;
+        }
+        return null;
+    }
+
+    public void insert(int index, int val) {
+        if (index > size || index < 0)
+            return;
+        Node<Integer> temp = new Node<Integer>(val);
+        Node<Integer> p = head;
+        if (index == 0) {
+            temp.next = head;
+            head = temp;
+        } else {
+            for (int i = 0; i < index - 1; i++)
+                p = p.next;
+            temp.next = p.next;
+            p.next = temp;
+            if (temp.next == null)
+                tail = temp;
+        }
+        size++;
+    }
+
+    public void insertAtLast(int val) {
+        Node<Integer> temp = new Node<Integer>(val);
+        if (isEmpty()) {
+            head = temp;
+            tail = temp;
+            size++;
+            return;
+        }
+        tail.next = temp;
+        tail = temp;
+        size++;
+    }
+
     private boolean isEmpty() {
         return size <= 0;
     }

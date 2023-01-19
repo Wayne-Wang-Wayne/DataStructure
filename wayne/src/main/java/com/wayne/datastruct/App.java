@@ -8,7 +8,7 @@ public final class App {
 
     public static void main(String[] args) {
         MyArrayList list = new MyArrayList(5, 3);
-        list.delete(0);
+        System.out.println(list.search(4));
         list.display();
     }
 }

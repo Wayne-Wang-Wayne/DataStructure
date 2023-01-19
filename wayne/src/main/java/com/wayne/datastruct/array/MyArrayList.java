@@ -58,6 +58,32 @@ public class MyArrayList {
         size--;
     }
 
+    public int search(int val) {
+        for (int i = 0; i < size; i++) {
+            if (list[i] == val)
+                return i;
+        }
+        return -1;
+    }
+
+    // only can be used when list is sorted
+    public int binarySearch(int val) {
+        int l, h, m;
+        l = 0;
+        h = size - 1;
+        while (l <= h) {
+            m = (l + h) / 2;
+            if (list[m] > val) {
+                l = m + 1;
+            } else if (list[m] < val) {
+                h = m - 1;
+            } else {
+                return list[m];
+            }
+        }
+        return -1;
+    }
+
     private void recreateList() {
         capacity = capacity * 2;
         int[] tempList = new int[capacity];

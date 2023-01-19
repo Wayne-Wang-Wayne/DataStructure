@@ -8,7 +8,7 @@ public final class App {
 
     public static void main(String[] args) {
         MyArrayList list = new MyArrayList(10, 3);
-        // System.out.println(list.search(4));
+        System.out.println(list.search(4));
         list.printPairOfSum(10);
     }
 }

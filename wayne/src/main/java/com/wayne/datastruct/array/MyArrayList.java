@@ -5,14 +5,15 @@ import java.util.Scanner;
 
 public class MyArrayList {
 
-    int capacity;
-    int size;
+    int capacity = 0;
+    int size = 0;
     int[] list;
 
     public MyArrayList(int size, int capacity) {
         if (capacity < size)
             capacity = size;
         Scanner sc = new Scanner(System.in);
+        this.size = 0;
         this.capacity = capacity;
         list = new int[capacity];
         System.out.println("Enter value");
@@ -137,11 +138,11 @@ public class MyArrayList {
         while (l <= h) {
             m = (l + h) / 2;
             if (list[m] > val) {
-                l = m + 1;
-            } else if (list[m] < val) {
                 h = m - 1;
+            } else if (list[m] < val) {
+                l = m + 1;
             } else {
-                return list[m];
+                return m;
             }
         }
         return -1;
@@ -176,6 +177,9 @@ public class MyArrayList {
         for (int i = 0; i < size; i++) {
             // hash fuction: f(x) = x - minVal
             table[list[i] - minVal]++;
+            // check if the other pair is out of bound first
+            if (sum - list[i] - minVal < 0)
+                continue;
             if (table[sum - list[i] - minVal] > 0)
                 // pair found
                 System.out.println("Coresponding pair: " + String.valueOf(list[i]) + ", "

@@ -9,6 +9,8 @@ public final class App {
 
     public static void main(String[] args) {
         MyLinkedList list = new MyLinkedList(4);
-        list.display();
+        System.out.print(list.rSum());
+        list.rDisplay();
+        // list.rDisplay(list.head);
     }
 }

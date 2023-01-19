@@ -36,7 +36,39 @@ public class MyLinkedList {
         }
     }
 
+    public void rDisplay() {
+        System.out.print("Your LinkedList: ");
+        rDisplayHelper(head);
+    }
+
+    public int sum() {
+        int sum = 0;
+        Node<Integer> temp = head;
+        while (temp != null) {
+            sum += temp.value;
+            temp = temp.next;
+        }
+        return sum;
+    }
+
+    public int rSum() {
+        return rSumHelper(head);
+    }
+
     private boolean isEmpty() {
         return size <= 0;
+    }
+
+    private void rDisplayHelper(Node<Integer> node) {
+        if (node == null)
+            return;
+        System.out.print(String.valueOf(node.value) + " ");
+        rDisplayHelper(node.next);
+    }
+
+    public int rSumHelper(Node<Integer> node) {
+        if (node == null)
+            return 0;
+        return rSumHelper(node.next) + node.value;
     }
 }

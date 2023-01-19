@@ -9,8 +9,6 @@ public class MyArrayList {
     int[] list;
 
     public MyArrayList(int size, int capacity) {
-        if (size > capacity)
-            size = capacity;
         Scanner sc = new Scanner(System.in);
         this.capacity = capacity;
         list = new int[capacity];

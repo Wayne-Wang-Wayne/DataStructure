@@ -1,11 +1,13 @@
 package com.wayne.datastruct;
 
+import com.wayne.datastruct.array.MyArrayList;
+
 public final class App {
     private App() {
     }
 
     public static void main(String[] args) {
-        for(int i = 0 ; i < 5 ; i++)
-            System.out.println("Hello World!");
+        MyArrayList list = new MyArrayList(3, 10);
+        list.display();
     }
 }

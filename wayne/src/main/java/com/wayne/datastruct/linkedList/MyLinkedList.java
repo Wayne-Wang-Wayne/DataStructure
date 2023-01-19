@@ -2,7 +2,7 @@ package com.wayne.datastruct.linkedList;
 
 import java.util.Scanner;
 
-class MyLinkedList {
+public class MyLinkedList {
     int size = 0;
     Node<Integer> head;
     Node<Integer> tail;
@@ -23,6 +23,17 @@ class MyLinkedList {
         this.size = size;
         tail = p;
         sc.close();
+    }
+
+    public void display() {
+        if (isEmpty())
+            return;
+        Node<Integer> temp = head;
+        System.out.print("Your LinkedList: ");
+        while (temp != null) {
+            System.out.print(String.valueOf(temp.value) + " ");
+            temp = temp.next;
+        }
     }
 
     private boolean isEmpty() {

@@ -9,6 +9,11 @@ public class MyArrayList {
     int size = 0;
     int[] list;
 
+    public MyArrayList() {
+        capacity = 10;
+        list = new int[capacity];
+    }
+
     public MyArrayList(int size, int capacity) {
         if (capacity < size)
             capacity = size;

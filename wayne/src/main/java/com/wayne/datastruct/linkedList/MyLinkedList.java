@@ -7,6 +7,8 @@ public class MyLinkedList {
     Node<Integer> head;
     Node<Integer> tail;
 
+    public MyLinkedList() {}
+
     public MyLinkedList(int size) {
         if (size == 0)
             return;

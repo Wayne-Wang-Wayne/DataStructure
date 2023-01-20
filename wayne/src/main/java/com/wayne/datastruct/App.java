@@ -6,7 +6,7 @@ import com.wayne.datastruct.linkedList.MyLinkedList;
 public final class App {
 
     public static void main(String[] args) {
-        MyLinkedList list = new MyLinkedList(4);
+        MyLinkedList list = new MyLinkedList();
         list.insertAtLast(10);
         list.insertAtLast(13);
         list.insertAtLast(19);

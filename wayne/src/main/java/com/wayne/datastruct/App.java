@@ -10,6 +10,7 @@ public final class App {
         list.insertAtLast(10);
         list.insertAtLast(13);
         list.insertAtLast(19);
+        System.out.println(list.delete(1));
         list.rDisplay();
     }
 }

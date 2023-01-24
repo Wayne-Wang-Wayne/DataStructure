@@ -7,7 +7,8 @@ public class MyLinkedList {
     Node<Integer> head;
     Node<Integer> tail;
 
-    public MyLinkedList() {}
+    public MyLinkedList() {
+    }
 
     public MyLinkedList(int size) {
         if (size == 0)
@@ -106,6 +107,27 @@ public class MyLinkedList {
         tail.next = temp;
         tail = temp;
         size++;
+    }
+
+    public int delete(int index) {
+        int val = -1;
+        Node<Integer> curr = head;
+        Node<Integer> pre = null;
+        if (index < 0 || index >= size)
+            return val;
+        size--;
+        if (index == 0) {
+            val = head.value;
+            head = head.next;
+            return val;
+        } else {
+            for (int i = 0; i < index; i++) {
+                pre = curr;
+                curr = curr.next;
+            }
+            pre.next = curr.next;
+            return curr.value;
+        }
     }
 
     private boolean isEmpty() {

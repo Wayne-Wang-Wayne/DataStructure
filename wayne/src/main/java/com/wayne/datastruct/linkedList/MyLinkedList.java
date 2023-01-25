@@ -160,9 +160,9 @@ public class MyLinkedList {
     }
 
     public void reverse() {
-        Node curr = null;
-        Node pre = null;
-        Node next = head;
+        Node<Integer> curr = null;
+        Node<Integer> pre = null;
+        Node<Integer> next = head;
         while (next != null) {
             pre = curr;
             curr = next;
@@ -174,6 +174,53 @@ public class MyLinkedList {
 
     public void rReverse() {
         rReverseHelper(null, head);
+    }
+
+    public MyLinkedList concat(MyLinkedList secList) {
+        if (secList == null)
+            return this;
+        Node<Integer> curr = head;
+        while (curr.next != null) {
+            curr = curr.next;
+        }
+        curr.next = secList.head;
+        return this;
+    }
+
+    public MyLinkedList merge(MyLinkedList secList) {
+        if (secList == null)
+            return this;
+        if (secList.isEmpty() || isEmpty() || !isSorted() || !secList.isSorted())
+            return this;
+        Node<Integer> mergeHead = null;
+        Node<Integer> mergeTail = null;
+        Node<Integer> head1 = head;
+        Node<Integer> head2 = secList.head;
+        if (head1.value <= head2.value) {
+            mergeHead = mergeTail = head1;
+            head1 = head1.next;
+        } else {
+            mergeHead = mergeTail = head2;
+            head2 = head2.next;
+        }
+        while (head1 != null && head2 != null) {
+            if (head1.value <= head2.value) {
+                mergeTail.next = head1;
+                mergeTail = head1;
+                head1 = head1.next;
+            } else {
+                mergeTail.next = head2;
+                mergeTail = head2;
+                head2 = head2.next;
+            }
+        }
+        if (head1 == null) {
+            mergeTail.next = head2;
+        } else {
+            mergeTail.next = head1;
+        }
+        head = mergeHead;
+        return this;
     }
 
     private boolean isEmpty() {

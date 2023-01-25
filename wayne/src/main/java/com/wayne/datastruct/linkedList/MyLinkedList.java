@@ -159,6 +159,23 @@ public class MyLinkedList {
         }
     }
 
+    public void reverse() {
+        Node curr = null;
+        Node pre = null;
+        Node next = head;
+        while (next != null) {
+            pre = curr;
+            curr = next;
+            next = next.next;
+            curr.next = pre;
+        }
+        head = curr;
+    }
+
+    public void rReverse() {
+        rReverseHelper(null, head);
+    }
+
     private boolean isEmpty() {
         return size <= 0;
     }
@@ -170,9 +187,18 @@ public class MyLinkedList {
         rDisplayHelper(node.next);
     }
 
-    public int rSumHelper(Node<Integer> node) {
+    private int rSumHelper(Node<Integer> node) {
         if (node == null)
             return 0;
         return rSumHelper(node.next) + node.value;
+    }
+
+    private void rReverseHelper(Node<Integer> pre, Node<Integer> curr) {
+        if (curr == null) {
+            head = pre;
+            return;
+        }
+        rReverseHelper(curr, curr.next);
+        curr.next = pre;
     }
 }

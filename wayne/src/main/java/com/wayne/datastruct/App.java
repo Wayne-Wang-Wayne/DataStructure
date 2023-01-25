@@ -14,7 +14,7 @@ public final class App {
         list.insertAtLast(18);
         list.insertAtLast(19);
         list.insertAtLast(19);
-        list.deleteDuplicateFormSoted();
+        list.rReverse();
         // System.out.println(list.delete(1));
         list.rDisplay();
     }

@@ -130,6 +130,18 @@ public class MyLinkedList {
         }
     }
 
+    public boolean isSorted() {
+        int preVal = Integer.MIN_VALUE;
+        Node<Integer> curr = head;
+        while (curr != null) {
+            if (preVal > curr.value)
+                return false;
+            preVal = curr.value;
+            curr = curr.next;
+        }
+        return true;
+    }
+
     private boolean isEmpty() {
         return size <= 0;
     }

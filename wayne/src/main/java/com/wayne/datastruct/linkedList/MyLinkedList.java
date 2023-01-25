@@ -142,6 +142,23 @@ public class MyLinkedList {
         return true;
     }
 
+    // only can be use when linkedList is sorted.
+    public void deleteDuplicateFormSoted() {
+        if (!isSorted())
+            return;
+        Node<Integer> curr = head;
+        Node<Integer> next = head.next;
+        while (next != null) {
+            if (curr.value == next.value) {
+                curr.next = next.next;
+                next = curr.next;
+            } else {
+                curr = next;
+                next = next.next;
+            }
+        }
+    }
+
     private boolean isEmpty() {
         return size <= 0;
     }

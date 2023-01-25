@@ -9,9 +9,13 @@ public final class App {
         MyLinkedList list = new MyLinkedList();
         list.insertAtLast(10);
         list.insertAtLast(13);
+        list.insertAtLast(13);
+        list.insertAtLast(13);
+        list.insertAtLast(18);
         list.insertAtLast(19);
-        System.out.println("is sorted? " + list.isSorted());
-        System.out.println(list.delete(1));
+        list.insertAtLast(19);
+        list.deleteDuplicateFormSoted();
+        // System.out.println(list.delete(1));
         list.rDisplay();
     }
 }

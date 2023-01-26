@@ -223,6 +223,17 @@ public class MyLinkedList {
         return this;
     }
 
+    public boolean isLoop() {
+        Node<Integer> fast = head;
+        Node<Integer> slow = head;
+        do {
+            fast = fast.next;
+            slow = slow.next;
+            fast = fast == null ? null : fast.next;
+        } while (fast != null && slow != null && fast != slow);
+        return fast == slow;
+    }
+
     private boolean isEmpty() {
         return size <= 0;
     }

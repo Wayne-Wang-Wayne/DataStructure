@@ -152,6 +152,7 @@ public class MyLinkedList {
             if (curr.value == next.value) {
                 curr.next = next.next;
                 next = curr.next;
+                size--;
             } else {
                 curr = next;
                 next = next.next;
@@ -179,6 +180,7 @@ public class MyLinkedList {
     public MyLinkedList concat(MyLinkedList secList) {
         if (secList == null)
             return this;
+        size = secList.size + this.size;
         Node<Integer> curr = head;
         while (curr.next != null) {
             curr = curr.next;
@@ -196,6 +198,7 @@ public class MyLinkedList {
         Node<Integer> mergeTail = null;
         Node<Integer> head1 = head;
         Node<Integer> head2 = secList.head;
+        size = secList.size + this.size;
         if (head1.value <= head2.value) {
             mergeHead = mergeTail = head1;
             head1 = head1.next;

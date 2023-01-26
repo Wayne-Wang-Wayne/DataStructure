@@ -7,7 +7,16 @@ public class MyLinkedList {
     Node<Integer> head;
     Node<Integer> tail;
 
-    public MyLinkedList() {
+    public MyLinkedList(int[] list) {
+        if (list == null || list.length < 1)
+            return;
+        this.size = list.length;
+        head = new Node<Integer>(list[0]);
+        tail = head;
+        for (int i = 1; i < size; i++) {
+            tail.next = new Node<Integer>(list[i]);
+            tail = tail.next;
+        }
     }
 
     public MyLinkedList(int size) {

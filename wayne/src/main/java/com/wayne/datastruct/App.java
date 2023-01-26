@@ -6,14 +6,7 @@ import com.wayne.datastruct.linkedList.MyLinkedList;
 public final class App {
 
     public static void main(String[] args) {
-        MyLinkedList list = new MyLinkedList();
-        list.insertAtLast(10);
-        list.insertAtLast(13);
-        list.insertAtLast(14);
-        list.insertAtLast(14);
-        list.insertAtLast(18);
-        list.insertAtLast(19);
-        list.insertAtLast(19);
+        MyLinkedList list = new MyLinkedList(new int[] { 0, 1, 2, 3, 4, 5, 6, 7 });
         list.rDisplay();
     }
 }

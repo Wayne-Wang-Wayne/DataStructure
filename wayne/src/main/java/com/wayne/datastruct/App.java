@@ -8,6 +8,7 @@ public final class App {
 
     public static void main(String[] args) {
         CircularLinkedList list = new CircularLinkedList(new int[] { 0, 1, 2, 3, 4, 5, 6, 7 });
+        list.insert(7, 10);
         list.rDisplay();
     }
 }

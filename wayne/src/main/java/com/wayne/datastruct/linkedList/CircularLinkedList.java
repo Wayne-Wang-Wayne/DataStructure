@@ -37,6 +37,34 @@ public class CircularLinkedList {
         rDisplayRider(head);
     }
 
+    public void insert(int index, int val) {
+        if (index < 0 || index > size)
+            return;
+        Node<Integer> t = new Node<Integer>(val);
+        Node<Integer> curr = head;
+        if (index == 0 || index == size) {
+            if (head == null) {
+                head = t;
+                head.next = head;
+            } else {
+                while (curr.next != head) {
+                    curr = curr.next;
+                }
+                t.next = head;
+                curr.next = t;
+                if (index == 0)
+                    head = t;
+            }
+        } else {
+            for (int i = 0; i < index - 1; i++) {
+                curr = curr.next;
+            }
+            t.next = curr.next;
+            curr.next = t;
+        }
+        size++;
+    }
+
     boolean rDisplayFlag = false;
 
     private void rDisplayRider(Node<Integer> curr) {

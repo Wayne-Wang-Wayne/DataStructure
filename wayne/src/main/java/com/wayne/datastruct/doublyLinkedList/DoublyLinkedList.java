@@ -32,6 +32,31 @@ public class DoublyLinkedList {
         }
     }
 
+    public void insert(int index, int val) {
+        if (index < 0 || index > size)
+            return;
+        Node<Integer> temp = new Node<Integer>(val);
+        Node<Integer> curr = head;
+        if (index == 0) {
+            if (head == null) {
+                head = temp;
+            } else {
+                temp.next = head;
+                head.prev = temp;
+                head = temp;
+            }
+        } else {
+            for (int i = 0; i < index - 1; i++)
+                curr = curr.next;
+            if (curr.next != null)
+                curr.next.prev = temp;
+            temp.next = curr.next;
+            temp.prev = curr;
+            curr.next = temp;
+        }
+        size++;
+    }
+
     private boolean isEmpty() {
         return size <= 0;
     }

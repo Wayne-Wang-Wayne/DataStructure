@@ -9,7 +9,7 @@ public final class App {
 
     public static void main(String[] args) {
         DoublyLinkedList list = new DoublyLinkedList(new int[] { 0, 1, 2, 3, 4, 5, 6, 7 });
-        list.insert(4, 100);
+        list.delete(2);
         list.display();
     }
 }

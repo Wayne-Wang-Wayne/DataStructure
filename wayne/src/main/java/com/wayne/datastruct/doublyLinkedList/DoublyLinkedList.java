@@ -57,6 +57,29 @@ public class DoublyLinkedList {
         size++;
     }
 
+    public int delete(int index) {
+        int val = -1;
+        Node<Integer> curr = head;
+        if (index < 0 || index >= size)
+            return val;
+        if (index == 0) {
+            val = head.value;
+            head = head.next;
+            if (head != null)
+                head.prev = null;
+        } else {
+            for (int i = 0; i < index; i++)
+                curr = curr.next;
+            val = curr.value;
+            curr.prev.next = curr.next;
+            if (curr.next != null)
+                curr.next.prev = curr.prev;
+        }
+        size--;
+        return val;
+
+    }
+
     private boolean isEmpty() {
         return size <= 0;
     }

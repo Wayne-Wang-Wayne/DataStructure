@@ -194,6 +194,10 @@ public class MyArrayList {
 
     }
 
+    public int getSize() {
+        return size;
+    }
+
     private boolean isSorted() {
         if (isEmpty())
             return false;

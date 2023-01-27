@@ -246,6 +246,10 @@ public class MyLinkedList {
         return fast == slow;
     }
 
+    public int getSize() {
+        return size;
+    }
+
     private boolean isEmpty() {
         return size <= 0;
     }

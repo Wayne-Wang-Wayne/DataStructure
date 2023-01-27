@@ -65,6 +65,33 @@ public class CircularLinkedList {
         size++;
     }
 
+    public int delete(int index) {
+        int val = -1;
+        if (index < 0 || index >= size)
+            return val;
+        Node<Integer> curr = head;
+        if (index == 0) {
+            while (curr.next != head)
+                curr = curr.next;
+            if (curr == head) {
+                head = null;
+                val = curr.value;
+            } else {
+                val = head.value;
+                curr.next = head.next;
+                head = curr.next;
+            }
+        } else {
+            curr = head;
+            for (int i = 0; i < index - 1; i++)
+                curr = curr.next;
+            val = curr.next.value;
+            curr.next = curr.next.next;
+        }
+        size--;
+        return val;
+    }
+
     boolean rDisplayFlag = false;
 
     private void rDisplayRider(Node<Integer> curr) {

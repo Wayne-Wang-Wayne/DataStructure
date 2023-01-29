@@ -54,4 +54,30 @@ public class CircularDoublyLinkedList {
       head = temp;
     size++;
   }
+
+  public int getSize() {
+    return size;
+  }
+
+  public int delete(int index) {
+    int val = -1;
+    if (index < 0 || index >= size)
+      return val;
+    if (size == 1) {
+      size--;
+      val = head.value;
+      head = null;
+      return val;
+    }
+    Node<Integer> curr = head;
+    for (int i = 0; i < index; i++)
+      curr = curr.next;
+    curr.prev.next = curr.next;
+    curr.next.prev = curr.prev;
+    val = curr.value;
+    if (index == 0)
+      head = curr.next;
+    size--;
+    return val;
+  }
 }

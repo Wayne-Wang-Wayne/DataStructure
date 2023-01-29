@@ -9,7 +9,8 @@ public final class App {
 
     public static void main(String[] args) {
         DoublyLinkedList list = new DoublyLinkedList(new int[] { 0, 1, 2, 3, 4, 5, 6, 7 });
-        list.delete(2);
+        list.reverse();
+        list.reverse();
         list.display();
     }
 }

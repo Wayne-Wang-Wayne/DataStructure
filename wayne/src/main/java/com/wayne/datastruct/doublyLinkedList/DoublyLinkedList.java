@@ -80,6 +80,20 @@ public class DoublyLinkedList {
 
     }
 
+    public void reverse() {
+        if (size <= 1)
+            return;
+        Node<Integer> curr = head;
+        while (curr != null) {
+            Node<Integer> temp = curr.next;
+            curr.next = curr.prev;
+            curr.prev = temp;
+            curr = curr.prev;
+            if (curr != null && curr.next == null)
+                head = curr;
+        }
+    }
+
     private boolean isEmpty() {
         return size <= 0;
     }

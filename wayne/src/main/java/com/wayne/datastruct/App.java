@@ -9,8 +9,8 @@ import com.wayne.datastruct.linkedList.MyLinkedList;
 public final class App {
 
     public static void main(String[] args) {
-        CircularDoublyLinkedList list = new CircularDoublyLinkedList(new int[] { 0, 1, 2, 3, 4, 5, 6, 7 });
-        list.delete(5);
+        MyLinkedList list = new MyLinkedList(new int[] { 0, 1, 2, 3, 4, 5 });
+        System.out.println(list.findMiddle());
         list.display();
     }
 }

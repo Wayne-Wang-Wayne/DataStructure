@@ -246,6 +246,17 @@ public class MyLinkedList {
         return fast == slow;
     }
 
+    public int findMiddle() {
+        Node<Integer> fast, slow;
+        fast = slow = head;
+        while(fast != null) {
+            fast = fast.next;
+            if(fast != null) fast = fast.next;
+            if(fast != null) slow = slow.next;
+        }
+        return slow.value;
+    }
+
     public int getSize() {
         return size;
     }

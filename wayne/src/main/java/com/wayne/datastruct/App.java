@@ -5,19 +5,14 @@ import com.wayne.datastruct.doublyLinkedList.CircularDoublyLinkedList;
 import com.wayne.datastruct.doublyLinkedList.DoublyLinkedList;
 import com.wayne.datastruct.linkedList.CircularLinkedList;
 import com.wayne.datastruct.linkedList.MyLinkedList;
+import com.wayne.datastruct.stack.CustomCharStack;
 import com.wayne.datastruct.stack.MyStack;
 
 public final class App {
 
     public static void main(String[] args) {
-        MyStack stack = new MyStack();
-        stack.push(0);
-        stack.push(1);
-        stack.push(2);
-        stack.push(3);
-        stack.push(4);
-        System.out.println(stack.pop());
-        System.out.println(stack.pop());
-        stack.display();
+        CustomCharStack stack = new CustomCharStack();
+        String postfix = stack.infixToPostfix("a+b*c-d/e");
+        System.out.println(postfix);
     }
 }

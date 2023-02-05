@@ -2,29 +2,29 @@ package com.wayne.datastruct.stack;
 
 import com.wayne.datastruct.linkedList.Node;
 
-public class MyStack {
+public class MyStack<T> {
 
-    Node<Integer> top;
+    Node<T> top;
 
     public MyStack() {}
 
     public void display() {
         System.out.println("Your Stack: ");
-        Node<Integer> p = top;
+        Node<T> p = top;
         while(p != null){
             System.out.println(p.value + " ");
             p = p.next;
         }
     }
 
-    public void push(int val) {
-        Node<Integer> temp = new Node<Integer>(val);
+    public void push(T val) {
+        Node<T> temp = new Node<T>(val);
         temp.next = top;
         top = temp;
     }
 
-    public int pop() {
-        int val = -1;
+    public T pop() {
+        T val = null;
         if(top != null) {
             val = top.value;
             top = top.next;
@@ -32,10 +32,10 @@ public class MyStack {
         return val;
     }
 
-    public int peek(int pos) {
-        int val = -1;
+    public T peek(int pos) {
+        T val = null;
         if(pos < 0) return val;
-        Node<Integer> p = top;
+        Node<T> p = top;
         for(int i = 0 ; p!= null && i < pos ; i++) {
             p = p.next;
         }
@@ -43,8 +43,8 @@ public class MyStack {
         return val;
     }
 
-    public int stackTop() {
-        if(top != null) return top.value; else return -1;
+    public T stackTop() {
+        if(top != null) return top.value; else return null;
     }
 
     public boolean isEmpty() {

@@ -12,7 +12,7 @@ public final class App {
 
     public static void main(String[] args) {
         CustomCharStack stack = new CustomCharStack();
-        String postfix = stack.infixToPostfix("a+b*c-d/e");
+        String postfix = stack.infixToPostfix("((a+b)*c)-d^e^f");
         System.out.println(postfix);
     }
 }

@@ -1,6 +1,8 @@
 package com.wayne.datastruct.stack;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class CustomCharStack extends MyStack<Character> {
     // private boolean isOperand(char c) {
@@ -38,6 +40,10 @@ public class CustomCharStack extends MyStack<Character> {
         if(c == '+' || c == '-' || c == '*' || c == '/' || c == '(' || c == ')'|| c == '^') return false; 
         else return true;
     }   
+    private boolean isOperand(String c) {
+        if(c.equals("+") || c.equals("-") || c.equals("*") || c.equals("/") || c.equals("(" ) || c.equals(")") || c.equals("^")) return false; 
+        else return true;
+    }   
     private int getPrecedence(char c, boolean isInStack) {
         switch(c) {
             case'+':
@@ -60,19 +66,25 @@ public class CustomCharStack extends MyStack<Character> {
         }
         return -1;
     }
-    public String infixToPostfix(String s) {
-        int i,j;
-        i = j = 0;
+    private List<String> infixToPostfix(String s) {
+        int i;
+        i = 0;
         char[] resource = s.toCharArray();
-        char[] postfix = new char[resource.length];
+        List<String> postfix = new ArrayList<String>();
+        String curString = "";
         while(i < resource.length) {
             if(isOperand(resource[i])) {
-                postfix[j++] = resource[i++];
+                curString = "";
+                while( i < resource.length && isOperand(resource[i])) {
+                    curString += resource[i];
+                    i++;
+                }
+                postfix.add(curString);
             } else {
                 if(isEmpty() || getPrecedence(resource[i], false) > getPrecedence(stackTop(), true)) {
                     push(resource[i++]);
                 } else if(getPrecedence(resource[i], false) < getPrecedence(stackTop(), true)) {
-                    postfix[j++] = pop();
+                    postfix.add(pop().toString());
                 } else {
                     i++;
                     pop();
@@ -80,8 +92,44 @@ public class CustomCharStack extends MyStack<Character> {
             }
         }
         while(!isEmpty()) {
-            postfix[j++] = pop();
+            postfix.add(pop().toString());
         }
-        return new String(postfix);
+        return postfix;
+    }
+
+    public int calculate(String s) {
+        List<String> postfix = infixToPostfix(s);
+        MyStack<Integer> stack = new MyStack<>();
+        for(int i = 0 ; i < postfix.size() ; i++) {
+            if(isOperand(postfix.get(i))) {
+                stack.push(Integer.valueOf(postfix.get(i)));
+            } else {
+                int first = stack.pop();
+                int second = stack.pop();
+                switch(postfix.get(i)) {
+                    case "+":{
+                        stack.push(second + first);
+                        break;
+                    }
+                    case "-":{
+                        stack.push(second - first);
+                        break;
+                    }
+                    case "*":{
+                        stack.push(second * first);
+                        break;
+                    }
+                    case "/":{
+                        stack.push(second / first);
+                        break;
+                    }
+                    case "^":{
+                        stack.push((int) Math.round(Math.pow(second, first)));
+                        break;
+                    }
+                }
+            }
+        }
+        return stack.pop();
     }
 }

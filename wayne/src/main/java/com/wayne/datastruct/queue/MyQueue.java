@@ -17,7 +17,7 @@ public class MyQueue<T> {
 
     public void display() {
         Node<T> curr = front;
-        System.out.print("Your queue: ");
+        // System.out.print("Your queue: ");
         while(curr != null) {
             System.out.print(curr.value.toString() + " ");
             curr = curr.next;

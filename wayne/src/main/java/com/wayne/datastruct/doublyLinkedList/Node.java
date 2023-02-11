@@ -1,11 +1,11 @@
 package com.wayne.datastruct.doublyLinkedList;
 
 public class Node<T> {
-    T value;
-    Node<T> prev;
-    Node<T> next;
+    public T value;
+    public Node<T> prev;
+    public Node<T> next;
 
-    Node(T value) {
+    public Node(T value) {
         this.value = value;
     }
 }

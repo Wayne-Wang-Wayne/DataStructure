@@ -1,5 +1,7 @@
 package com.wayne.datastruct.tree;
 import com.wayne.datastruct.queue.MyQueue;
+import com.wayne.datastruct.stack.MyStack;
+
 import java.util.Scanner;
 
 public class MyTree {
@@ -47,6 +49,22 @@ public class MyTree {
         preOrderRider(node.right);
     }
 
+    public void iTPreOrder() {
+        System.out.println("PreOrder");
+        if(root == null) return;
+        MyStack<TreeNode<Integer>> stack = new MyStack<>();
+        TreeNode<Integer> t = root;
+        while(!stack.isEmpty() || t != null) {
+            if(t != null) {
+                System.out.println(t.value);
+                stack.push(t);
+                t = t.left; 
+            } else {
+                t = stack.pop().right;
+            }
+        }   
+    }
+
     public void inOrder() {
         System.out.println("InOrder");
         inOrderRider(root);
@@ -59,6 +77,22 @@ public class MyTree {
         inOrderRider(node.right);
     }
 
+    public void iTInOrder() {
+        System.out.println("InOrder");
+        MyStack<TreeNode<Integer>> stack = new MyStack<>();
+        TreeNode<Integer> t = root;
+        while(t != null || !stack.isEmpty()) {
+            if(t != null) {
+                stack.push(t);
+                t = t.left;
+            } else {
+                t = stack.pop();
+                System.out.println(t.value);
+                t = t.right;
+            }
+        }
+    }
+
     public void postOrder() {
         System.out.println("PostOrder");
         postOrderRider(root);
@@ -69,6 +103,27 @@ public class MyTree {
         postOrderRider(node.left);
         postOrderRider(node.right);
         System.out.println(node.value);
+    }
+
+    public void iTPostOrder() {
+        System.out.println("PostOrder");
+        MyStack<TreeNode<Integer>> s1 = new MyStack<>();
+        MyStack<TreeNode<Integer>> s2 = new MyStack<>();
+        TreeNode<Integer> t = root;
+        s1.push(t);
+        while(!s1.isEmpty()) {
+            t = s1.pop();
+            s2.push(t);
+            if(t.left != null) {
+                s1.push(t.left);
+            }
+            if(t.right != null) {
+                s1.push(t.right);
+            }
+        }
+        while(!s2.isEmpty()) {
+            System.out.println(s2.pop().value);
+        }
     }
 
     public void levelOrder() {

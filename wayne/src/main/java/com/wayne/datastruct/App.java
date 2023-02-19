@@ -17,10 +17,7 @@ public final class App {
     public static void main(String[] args) {
         MyTree tree = new MyTree();
         tree.createTree();
-        tree.inOrder();
-        tree.preOrder();
-        tree.postOrder();
-        tree.levelOrder();
+        tree.iTPostOrder();
         System.out.println("Height = " + tree.height());
     }
 }

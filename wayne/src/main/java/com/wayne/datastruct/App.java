@@ -18,6 +18,6 @@ public final class App {
         MyTree tree = new MyTree();
         tree.createTree();
         tree.iTPostOrder();
-        System.out.println("Height = " + tree.height());
+        System.out.println("Count = " + tree.count());
     }
 }

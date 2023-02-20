@@ -152,4 +152,13 @@ public class MyTree {
         if(node == null) return 0;
         return Math.max(heightRider(node.left), heightRider(node.left)) + 1;
     }
+
+    public int count() {
+        return countRider(root);
+    }
+
+    private int countRider(TreeNode<Integer> node) {
+        if(node == null) return 0;
+        return countRider(node.left) + countRider(node.right) + 1;
+    }
 }

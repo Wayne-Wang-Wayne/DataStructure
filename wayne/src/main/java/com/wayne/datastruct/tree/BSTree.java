@@ -3,6 +3,23 @@ package com.wayne.datastruct.tree;
 public class BSTree {
     TreeNode<Integer> root;
 
+
+    public void rInsert(int val) {
+        root = rInsertRider(val, root);
+    }
+
+    private TreeNode<Integer> rInsertRider(int val, TreeNode<Integer> node) {
+        if(node == null) {
+            return new TreeNode<Integer>(val);
+        }
+        if(val > node.value) {
+            node.right = rInsertRider(val, node.right);
+        } else if(val < node.value) {
+            node.left = rInsertRider(val, node.left);
+        } 
+        return node;
+    }
+
     public void insert(int val) {
         TreeNode<Integer> curr = root;
         TreeNode<Integer> pre = null;

@@ -17,13 +17,13 @@ public final class App {
 
     public static void main(String[] args) {
         BSTree tree = new BSTree();
-        tree.insert(0);
-        tree.insert(4);
-        tree.insert(100);
-        tree.insert(55);
-        tree.insert(90);
-        tree.insert(60);
-        tree.insert(20);
+        tree.rInsert(0);
+        tree.rInsert(4);
+        tree.rInsert(100);
+        tree.rInsert(55);
+        tree.rInsert(90);
+        tree.rInsert(60);
+        tree.rInsert(20);
         tree.inOrder();
     }
 }

@@ -24,6 +24,7 @@ public final class App {
         tree.rInsert(90);
         tree.rInsert(60);
         tree.rInsert(20);
+        tree.delete(0);
         tree.inOrder();
     }
 }

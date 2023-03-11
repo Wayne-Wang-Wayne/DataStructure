@@ -4,6 +4,8 @@ public class SortUtils {
     
     // min: O(n)
     // max: O(n^2)
+    // adaptive: true
+    // stable: true
     public static void bubbleSort(int[] list) {
         boolean hasSwap = false;
         for(int i = 0 ; i < list.length - 1 ; i++) {

@@ -24,6 +24,22 @@ public class SortUtils {
         }
     }
 
+    // min: O(n)
+    // max: O(n^2)
+    // adaptive: true
+    // stable: true
+    public static void insertionSort(int[] list) {
+        for(int i = 1 ; i < list.length ; i++) {
+            int val = list[i];
+            int j = i - 1;
+            while(j > -1 && list[j] > val) {
+                list[j+1] = list[j];
+                j--;
+            }
+            list[j+1] = val;
+        }
+    }
+
     public static void printList(int[] list) {
         for(int i : list) {
             System.out.print(i + " ");

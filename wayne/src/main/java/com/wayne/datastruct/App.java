@@ -20,7 +20,7 @@ public final class App {
 
     public static void main(String[] args) {
         int[] array = new int[]{3,7,9,10,6,5,12,4,11,2};
-        SortUtils.bubbleSort(array);
+        SortUtils.insertionSort(array);
         SortUtils.printList(array);
     }
 }

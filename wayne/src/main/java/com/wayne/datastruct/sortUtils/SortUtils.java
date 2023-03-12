@@ -160,6 +160,35 @@ public class SortUtils {
         }
     }
 
+    // best case: O(n+m)
+    // worst case: O(n+m)
+    // can't be used by any list which contains negative number
+    // !! take lots of space !!
+    public static void countSort(int[] list) {
+        // find max number
+        int max = Integer.MIN_VALUE;
+        for(int i: list) {
+            max = Integer.max(max, i);
+        }
+        // default is already fill with 0
+        int[] countList = new int[max+1];
+        // count the number
+        for(int i: list) {
+            countList[i]++;
+        }
+        // put back the number
+        int i = 0;
+        int j = 0;
+        while(j < max+1) {
+            if(countList[j] > 0) {
+                list[i++] = j;
+                countList[j]--;
+            } else {
+                j++;
+            }
+        }
+    }
+
     public static void printList(int[] list) {
         for(int i : list) {
             System.out.print(i + " ");

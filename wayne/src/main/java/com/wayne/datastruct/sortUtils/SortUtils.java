@@ -116,7 +116,8 @@ public class SortUtils {
     // worst case: O(nlogn) 
     // adaptive: 
     // stable: 
-    // k pass is useful: 
+    // k pass is useful:
+    // extra space: true 
     public static void iterMergeSort(int[] list) {
         int p;
         for(p = 2 ; p <= list.length ; p*=2) {
@@ -128,6 +129,18 @@ public class SortUtils {
             }
         }
         if(p/2<list.length) { merge(list,0,p/2-1,list.length-1); }
+    }
+
+    public static void recursiveMergeSort(int[] list) {
+        rMergeSortRider(list, 0, list.length - 1);
+    }
+
+    private static void rMergeSortRider(int[] list, int lo, int hi) {
+        if(lo >= hi) return;
+        int mid = (lo + hi) / 2;
+        rMergeSortRider(list, lo, mid);
+        rMergeSortRider(list, mid + 1, hi);
+        merge(list, lo, mid, hi);
     }
 
     private static void merge(int[] list, int lo, int mid, int hi) {

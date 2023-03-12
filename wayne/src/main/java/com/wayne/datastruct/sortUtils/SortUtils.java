@@ -65,7 +65,7 @@ public class SortUtils {
         }
     }
 
-    // base case: O(nlogn) (if partitioning is in middle)
+    // best case: O(nlogn) (if partitioning is in middle)
     // worst case: O(n^2) (if list is in ascending or descending order)
     // adaptive: false
     // stable: false
@@ -112,7 +112,7 @@ public class SortUtils {
         return j;
     }
 
-    // base case: O(nlogn)
+    // best case: O(nlogn)
     // worst case: O(nlogn) 
     // adaptive: 
     // stable: 

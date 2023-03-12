@@ -2,8 +2,8 @@ package com.wayne.datastruct.sortUtils;
 
 public class SortUtils {
     
-    // min: O(n)
-    // max: O(n^2)
+    // best case: O(n) (if list is already sorted)
+    // worst case: O(n^2)
     // adaptive: true
     // stable: true
     // k pass is useful: true
@@ -25,8 +25,8 @@ public class SortUtils {
         }
     }
 
-    // min: O(n)
-    // max: O(n^2)
+    // best case: O(n) (if list is already sorted)
+    // worst case: O(n^2)
     // adaptive: true
     // stable: true
     // k pass is useful: false
@@ -42,8 +42,8 @@ public class SortUtils {
         }
     }
 
-    // min: O(n^2)
-    // max: O(n^2)
+    // best case: O(n^2)
+    // worst case: O(n^2)
     // adaptive: false
     // stable: false
     // k pass is useful: true
@@ -63,6 +63,53 @@ public class SortUtils {
             list[i] = list[k];
             list[k] = temp;
         }
+    }
+
+    // base case: O(nlogn) (if partitioning is in middle)
+    // worst case: O(n^2) (if list is in ascending or descending order)
+    // adaptive: false
+    // stable: false
+    // k pass is useful: false
+    public static void quickSort(int[] list) {
+        // clone a new list to add upperbound to list than sort
+        int[] copy = new int[list.length + 1];
+        for(int i = 0 ; i < list.length ; i++) {
+            copy[i] = list[i];
+        }
+        copy[copy.length - 1] = Integer.MAX_VALUE;
+        quickSortRider(copy, 0, copy.length - 1);
+        // add back the result to original list
+        for(int i = 0 ; i < list.length ; i++) {
+            list[i] = copy[i];
+        }
+    }
+
+    private static void quickSortRider(int[] list, int lo, int hi) {
+        if(lo >= hi) return;
+        int pivot = partition(list, lo, hi);
+        quickSortRider(list, lo, pivot);
+        quickSortRider(list, pivot + 1, hi);
+    }
+
+    private static int partition(int[] list, int lo, int hi) {
+        int i = lo;
+        int j = hi;
+        do{
+            do{i++;} while(list[lo] >= list[i]);
+            do{j--;} while(list[lo] < list[j]);
+            if(i < j) {
+                // swap i and j 
+                int temp = list[i];
+                list[i] = list[j];
+                list[j] = temp;
+            }
+        } while(i < j);
+        // swap lo and j
+        int temp = list[lo];
+        list[lo] = list[j];
+        list[j] = temp;
+        // return partioning index
+        return j;
     }
 
     public static void printList(int[] list) {

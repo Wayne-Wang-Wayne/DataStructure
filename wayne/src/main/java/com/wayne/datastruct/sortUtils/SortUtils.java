@@ -164,6 +164,7 @@ public class SortUtils {
     // worst case: O(n+m)
     // can't be used by any list which contains negative number
     // !! take lots of space !!
+    // bucket(bin) sort is pretty the same, it uses node to count the value instead of storing integer counts
     public static void countSort(int[] list) {
         // find max number
         int max = Integer.MIN_VALUE;

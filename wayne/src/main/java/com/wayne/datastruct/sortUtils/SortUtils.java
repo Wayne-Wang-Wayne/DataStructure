@@ -1,5 +1,7 @@
 package com.wayne.datastruct.sortUtils;
 
+import com.wayne.datastruct.queue.MyQueue;
+
 public class SortUtils {
     
     // best case: O(n) (if list is already sorted)
@@ -187,6 +189,73 @@ public class SortUtils {
             } else {
                 j++;
             }
+        }
+    }
+
+    // best case: O(d*n)
+    // worst case: O(d*n)
+    // pretty fast, only take O(n) time
+    // take only O(1) space
+    // radix sort is index based, only can sort decimal Integer number, because it is base on the radix
+    // (if use comparison base sort algorithm you can sort any thing)
+    public static void radixSort(int[] list) {
+        // divide into two list(positive and negative list)
+        int positiveCount = 0;
+        int negativeCount = 0;
+        for(int val: list) {
+            if(val >= 0) positiveCount++;
+            else negativeCount++;
+        }
+        int[] positiveList = new int[positiveCount];
+        int[] negativeList = new int[negativeCount];
+        int pI = 0;
+        int nI = 0;
+        for(int val: list) {
+            if(val >= 0) positiveList[pI++] = val;
+            else negativeList[nI++] = val;
+        }
+        // use radix sort on both list
+        radixSortMainLogic(positiveList);
+        radixSortMainLogic(negativeList);
+        int resultIndex = 0;
+        // negative list has to be add back in reversed order
+        for(int i = negativeList.length - 1 ; i >= 0 ; i--) {
+            list[resultIndex++] = negativeList[i];
+        }
+        // positive list simply add back
+        for(int val: positiveList) {
+            list[resultIndex++] = val;
+        }
+    }
+
+    private static void radixSortMainLogic(int[] list) {
+        if(list.length <= 1) return;
+        MyQueue<Integer>[] radixList = new MyQueue[10];
+        // fill the radixList with Queue
+        for(int i = 0 ; i < radixList.length ; i++) {
+            radixList[i] = new MyQueue<>();
+        }
+        boolean hasComplete = true;
+        int currDevideNum = 1;
+        while(true) {
+            hasComplete = true;
+            // level by level put into radix list
+            for(int i = 0 ; i < list.length ; i++) {
+                // let negative number follow the same rule and reverse list manually
+                int currVal = Math.abs((list[i] / currDevideNum) % 10);
+                // try to know if we are at last round
+                if(Math.abs(list[i]) / currDevideNum >= 10) hasComplete = false;
+                radixList[currVal].enqueue(list[i]);
+            }
+            // put back to original list follow FIFO rule
+            int j = 0;
+            for(MyQueue<Integer> q: radixList) {
+                while(!q.isEmpty()) {
+                    list[j++] = q.dequeue(); 
+                }
+            }
+            if(hasComplete) break;
+            currDevideNum *= 10;
         }
     }
 

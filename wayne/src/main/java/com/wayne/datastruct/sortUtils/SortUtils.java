@@ -112,6 +112,41 @@ public class SortUtils {
         return j;
     }
 
+    // base case: O(nlogn)
+    // worst case: O(nlogn) 
+    // adaptive: 
+    // stable: 
+    // k pass is useful: 
+    public static void iterMergeSort(int[] list) {
+        int p;
+        for(p = 2 ; p <= list.length ; p*=2) {
+            for(int i = 0 ; i+p-1 < list.length ; i+=p) {
+                int lo = i;
+                int hi = i+p-1;
+                int mid = (lo + hi) / 2;
+                merge(list, lo, mid, hi);
+            }
+        }
+        if(p/2<list.length) { merge(list,0,p/2-1,list.length-1); }
+    }
+
+    private static void merge(int[] list, int lo, int mid, int hi) {
+        int[] temp = new int[list.length];
+        int i = lo;
+        int j = mid + 1;
+        int k = lo;
+        while(i <= mid && j <= hi) {
+            if(list[i] < list[j]) temp[k++] = list[i++];
+            else temp[k++] = list[j++];
+        }
+        while(i <= mid) temp[k++] = list[i++];
+        while(j <= hi) temp[k++] = list[j++];
+        // copy back to original list
+        for(int l = lo ; l <= hi ; l++) {
+            list[l] = temp[l];
+        }
+    }
+
     public static void printList(int[] list) {
         for(int i : list) {
             System.out.print(i + " ");

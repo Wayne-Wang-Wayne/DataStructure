@@ -259,6 +259,25 @@ public class SortUtils {
         }
     }
 
+    // best case: O(nlogn)
+    // worst case: O(nlogn)
+    // pretty fast, only take O(n) time
+    // kind of like insertion sort
+    public static void shellSort(int[] list) {
+        int gap = list.length / 2;
+        for(; gap >= 1 ; gap/=2) {
+            for(int i = gap ; i < list.length ; i++) {
+                int currInsertVal = list[i];
+                int j = i - gap;
+                while(j >= 0 && list[j] > currInsertVal) {
+                    list[j + gap] = list[j];
+                    j-=gap;
+                }
+                list[j + gap] = currInsertVal;
+            }
+        }
+    }
+
     public static void printList(int[] list) {
         for(int i : list) {
             System.out.print(i + " ");
